@@ -29,7 +29,7 @@ public class DisposableExample {
         Disposable disposable = observable.subscribeWith(mCallback);
         mDisposables.add(disposable);
 
-        System.out.println(getTid() + "|wait before");
+        DevUtils.println("|wait before");
         for (int i = 0; i < 5; i++) {
             try {
                 //mDisposables.clear();
@@ -38,7 +38,7 @@ public class DisposableExample {
                 e.printStackTrace();
             }
         }
-        System.out.println(getTid() + "|wait after");
+        DevUtils.println("|wait after");
 
     }
 
@@ -46,9 +46,9 @@ public class DisposableExample {
 
         @Override
         public ObservableSource<? extends String> call() throws Exception {
-            System.out.println(getTid() + "|call is started");
+            DevUtils.println("|call is started");
             Thread.sleep(2000);
-            System.out.println(getTid() + "|call is stopped");
+            DevUtils.println("|call is stopped");
             return Observable.just("one", "two", "three", "four", "five");
         }
     };
@@ -57,17 +57,17 @@ public class DisposableExample {
 
         @Override
         public void onNext(String s) {
-            System.out.println(getTid() + "|next: " + s);
+            DevUtils.println("|next: " + s);
         }
 
         @Override
         public void onError(Throwable e) {
-            System.out.println(getTid() + "|error");
+            DevUtils.println("|error");
         }
 
         @Override
         public void onComplete() {
-            System.out.println(getTid() + "|onComplete");
+            DevUtils.println("|onComplete");
         }
     };
 
